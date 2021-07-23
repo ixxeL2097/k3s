@@ -1,0 +1,4 @@
+mirrors:
+  "my.company.registry":
+    endpoint:
+    - https://my.company.registry:5000

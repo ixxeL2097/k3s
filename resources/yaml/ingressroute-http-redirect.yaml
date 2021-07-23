@@ -1,0 +1,18 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-redirect-http
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: hostregexp(`{host:.+}`)
+    middlewares:
+    - name: middle-redirect-http
+      namespace: kube-system
+    services:
+    - name: traefik
+      port: 443
+      namespace: kube-system
