@@ -9,6 +9,7 @@ spec:
   routes:
   - kind: Rule
     match: hostregexp(`{host:.+}`)
+    priority: 50
     middlewares:
     - name: middle-redirect-http
       namespace: kube-system
