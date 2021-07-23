@@ -70,6 +70,8 @@ spec:
       namespace: kube-system
 ```
 
+It's important to set a priority, to make sure this rule will be used first before any other rule.
+
 ## Default TLS certificate
 
 Traefik handles TLS encryption by default with an auto generated certificate. If you want to delegate TLS encryption to your service, and create passthrough encryption, you need to use `IngressRouteTCP`.
