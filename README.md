@@ -13,7 +13,7 @@ k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 -p "5080:80
 
 ## Exposing Traefik dashboard
 
-To expose Traefik dashboard on HTTPS (websecure) port, you can create the following file, or copy it inside the k3s manifest directory :
+To expose Traefik dashboard on HTTPS (websecure) port, you can create the following `IngressRoute`, or copy it inside the k3s manifest directory :
 
 ```yaml
 apiVersion: traefik.containo.us/v1alpha1
