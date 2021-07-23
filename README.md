@@ -70,6 +70,15 @@ spec:
       namespace: kube-system
 ```
 
+If you prefer to do it through `Deployment` you can add the following lines to the Traefik `Deployment` in the `spec.template.spec.container.args` section :
+```yaml
+    spec:
+      containers:
+      - args:
+        - --entrypoints.web.http.redirections.entryPoint.to=websecure
+        - --entrypoints.web.http.redirections.entryPoint.scheme=https
+```
+
 It's important to set a priority, to make sure this rule will be used first before any other rule.
 
 ## Default TLS certificate
