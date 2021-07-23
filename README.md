@@ -1,6 +1,9 @@
 # k3s
 General repository for k3s/k3d infrastructures
 
+![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
+
 ## Deploying K3S
 
 K3S use the `/var/lib/rancher/k3s/server/manifests` at startup, and apply yaml files found in it. So you can add the differents kubernetes objects you want inside this directory and it's dynamically created by k3s.
