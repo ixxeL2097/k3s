@@ -71,7 +71,6 @@ spec:
 ```
 
 It's important to set a priority, to make sure this rule will be used first before any other rule.
-{: .alert .alert-warning}
 
 ## Default TLS certificate
 
