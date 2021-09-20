@@ -59,7 +59,7 @@ local-path             rancher.io/local-path
 
 Install with helm :
 ```bash
-helm upgrade -i vault --namespace vault vault/ --set ui.enabled=true
+helm upgrade -i vault --namespace vault vault/ --set ui.enabled=true --set server.dataStorage.storageClass=nfs-client-retain --set server.dataStorage.size=5Gi
 ```
 
 Unseal vault :
