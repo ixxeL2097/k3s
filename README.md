@@ -32,7 +32,7 @@ spec:
       name: api@internal
 ```
 
-Your traefik dashboard should be accessible to the URL `traefik.fredcorp.com:5443 (the host port mapped to your docker container 443 port). It won't be accessible to IP adress so be careful.
+Your traefik dashboard should be accessible to the URL `traefik.fredcorp.com:5443` (the host port mapped to your docker container 443 port). It won't be accessible to IP adress so be careful.
 
 ## HTTPS redirection
 
