@@ -108,4 +108,39 @@ cp git/k3s/resources/yaml/ingressroute-http-redirect.yaml k3s-config/
 cp git/k3s/resources/yaml/middleware-http-redirect.yaml k3s-config/
 ```
 
+## Trust certificate
+
+## Windows
+
+To trust certificate on windows, you need to import your certificated as `.der` format and then import it into MMC console.
+
+1. Click the Windows Start button.
+2. In the search box, begin typing `mmc.exe`, right-click the mmc.exe entry in the search results and select Run as Administrator.
+3. Select File > Add/Remove Snap-in.
+4. Select Certificates and click Add.
+5. In the Certificates snap-in dialog, select Computer account and complete the wizard.
+Click OK.
+6. In the MMC console, expand Certificates.
+7. Right-click Trusted Root Certificates and select All Tasks > Import.
+8. Follow the Certificate Import Wizard to import the .der certificate.
+
+## Chrome
+
+It's basically the same process 
+1. Chrome parameters
+2. Confidentiality and security
+3. Security
+4. Handle certificates
+5. In the new opened window, select `trusted root certification authorities` tab and then import again your certificate
+6. Kill chrome process with task manager to properly reboot chrome
+
+## Firefox
+
+Same process again, but you need one more step 
+
+1. Enter “about:config” in the address bar and continue to the list of preferences.
+2. Set the preference "security.enterprise_roots.enabled" to true.
+3. Restart Firefox. 
+
+
 
