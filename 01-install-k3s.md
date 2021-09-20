@@ -12,7 +12,7 @@ k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 \
 
 ## install the NFS client provisioner
 
-Add helm repo
+Add helm repo :
 
 ```bash
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
@@ -20,7 +20,7 @@ helm repo update
 helm fetch --untar nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
 ```
 
-install the provisionner with `delete` policy first
+install the provisionner with `delete` policy first :
 
 ```bash
 helm upgrade -i nfs-ext-provider nfs-subdir-external-provisioner/ -n nfs --set nfs.server=192.168.0.151 \
@@ -51,6 +51,24 @@ nfs-client-retain      cluster.local/nfs-ext-provider-nfs-subdir-external-provis
 nfs-client (default)   cluster.local/nfs-ext-provider-nfs-subdir-external-provisioner   Delete          Immediate              true                   13m
 local-path             rancher.io/local-path
 ```
+
+## install the Vault server
+
+Install with helm :
+```bash
+helm upgrade -i vault --namespace vault vault/ --set ui.enabled=true
+```
+
+Unseal vault :
+
+```bash
+kubectl exec -it vault-0 -n vault -- sh
+vault operator init --tls-skip-verify -key-shares=1 -key-threshold=1
+vault operator unseal --tls-skip-verify SLPHOFrrVVhvnrCAyxMgpqCa0oJWCeuPvhkqC3uSv2U=
+```
+
+Then create a Root CA / Int CA and wildcard certificate following the Vault documentation.
+
 
 ## configuration
 
