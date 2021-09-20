@@ -37,3 +37,13 @@ spec:
     store:
       name: default
 ```
+
+Move the ingressRoute to the manifests directory
+```bash
+cp k3s-resources/ingressroute-heimdall.yaml k3s-config/
+```
+
+if needed 
+```bash
+kubectl apply -f ingressroute-heimdall.yaml
+```
