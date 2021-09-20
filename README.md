@@ -8,7 +8,7 @@ K3S use the `/var/lib/rancher/k3s/server/manifests` at startup, and apply yaml f
 The best way to do it is to share the volume on the host with the following k3d command :
 
 ```shell
-k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 -p "5080:80@loadbalancer" -p "5443:443@loadbalancer" --volume "/home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/"
+k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 -p "5080:80@loadbalancer" -p "5443:443@loadbalancer" --volume "/home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/" --k3s-server-arg "--tls-san 192.168.0.150"
 ```
 
 ## Exposing Traefik dashboard
