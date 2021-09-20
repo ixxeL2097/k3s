@@ -67,7 +67,28 @@ vault operator init --tls-skip-verify -key-shares=1 -key-threshold=1
 vault operator unseal --tls-skip-verify SLPHOFrrVVhvnrCAyxMgpqCa0oJWCeuPvhkqC3uSv2U=
 ```
 
+Then apply the vault ingressroute to the k3s manifest directory:
+```bash
+cp git/k3s/resources/yaml/ingressroute-vault.yaml k3s-config/
+```
+
 Then create a Root CA / Int CA and wildcard certificate following the Vault documentation.
+Once your wildcard certificate and private key are created, you need to create a kubernetes secret :
+
+```bash
+kubectl create secret tls traefik-tls --key="private.key" --cert="cert.crt" -n kube-system
+```
+ and then add the TLSstore to the k3s manifest directory 
+ 
+ ```bash
+ cp git/k3s/resources/yaml/tlsstore-traefik.yaml k3s-config/
+```
+
+Delete the traefik pod, and then the new pods should be using the new configured certificate (traefik, vault and other services will all use the wildcard cert).
+ 
+ ```bash
+kubectl delete pod traefik-97b44b794-42bkq -n kube-system
+```
 
 
 ## configuration
