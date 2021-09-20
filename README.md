@@ -32,6 +32,8 @@ spec:
       name: api@internal
 ```
 
+Your traefik dashboard should be accessible to the URL `traefik.fredcorp.com:[port]` (in this case, the port will be the port mapped from docker to your host machine). It won't be accessible to IP adress so be careful.
+
 ## HTTPS redirection
 
 To force HTTPS redirection, you can create a `Middleware` traefik object and a specific `IngressRoute` object to enable this rule
