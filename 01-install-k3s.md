@@ -72,7 +72,9 @@ Then apply the vault ingressroute to the k3s manifest directory:
 cp git/k3s/resources/yaml/ingressroute-vault.yaml k3s-config/
 ```
 
-Then create a Root CA / Int CA and wildcard certificate following the Vault documentation.
+## Configure TLS wildcard certificate for all services
+
+Create a Root CA / Int CA and wildcard certificate following the Vault documentation.
 Once your wildcard certificate and private key are created, you need to create a kubernetes secret :
 
 ```bash
