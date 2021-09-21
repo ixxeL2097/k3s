@@ -110,7 +110,7 @@ cp git/k3s/resources/yaml/middleware-http-redirect.yaml k3s-config/
 
 ## Trust certificate
 
-## Windows
+### Windows
 
 To trust certificate on windows, you need to import your certificated as `.der` format and then import it into MMC console.
 
@@ -124,7 +124,7 @@ Click OK.
 7. Right-click Trusted Root Certificates and select All Tasks > Import.
 8. Follow the Certificate Import Wizard to import the .der certificate.
 
-## Chrome
+### Chrome
 
 It's basically the same process 
 1. Chrome parameters
@@ -134,7 +134,7 @@ It's basically the same process
 5. In the new opened window, select `trusted root certification authorities` tab and then import again your certificate
 6. Kill chrome process with task manager to properly reboot chrome
 
-## Firefox
+### Firefox
 
 Same process again, but you need one more step 
 
