@@ -1,17 +1,20 @@
 # Installing k3s
+## Preambule
+K3D v5.03 documentation
 
 ## k3s cluster installation
 Create the cluster and expose the required ports:
 
 ```bash
-k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 \
+k3d cluster create fredcorp --image=ixxel/k3s:v1.21.2-k3s1-alpine314 \
                             -p "5080:80@loadbalancer" \
                             -p "5443:443@loadbalancer" \
                             --volume "/home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/" \
-                            --k3s-server-arg "--tls-san 192.168.0.150"
+                            --servers=2 \
+                            --k3s-arg "--tls-san 192.168.0.150@server:*"
 ```
-
-The `--tls-san` option is used to allow remote kubectl commands to the VM hosting your docker k3s image.
+:pushpin: The `--servers=2` allow HA cluster (preferably 3 servers but can always be updated later)
+:pushpin: The `--tls-san` option is used to allow remote kubectl commands to the VM hosting your docker k3s image.
 
 You can use the customized Dockerfile [here](../resources/Dockerfile) to deploy your cluster with NFS possibilities.
 

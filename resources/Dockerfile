@@ -1,5 +1,5 @@
 #FROM rancher/k3s:v1.0.0 as base
-FROM rancher/k3s:v1.21.2-k3s1 as base
+FROM rancher/k3s:v1.22.3-k3s1 as base
 
 # https://github.com/rancher/k3s/issues/390
 # Because of the above issue, we want to add
