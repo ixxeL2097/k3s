@@ -2,11 +2,11 @@
 ## Preambule
 K3D v5.03 documentation
 
-## k3s cluster installation
+## k3s cluster installation : k3d CLI
 Create the cluster and expose the required ports:
 
 ```bash
-k3d cluster create fredcorp --image=ixxel/k3s:v1.21.2-k3s1-alpine314 \
+k3d cluster create fredcorp --image=ixxel/k3s:v1.22.3-k3s1-alpine314 \
                             -p "5080:80@loadbalancer" \
                             -p "5443:443@loadbalancer" \
                             --volume "/home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/" \
@@ -14,9 +14,68 @@ k3d cluster create fredcorp --image=ixxel/k3s:v1.21.2-k3s1-alpine314 \
                             --k3s-arg "--tls-san 192.168.0.150@server:*"
 ```
 :pushpin: The `--servers=2` allow HA cluster (preferably 3 servers but can always be updated later)
+
 :pushpin: The `--tls-san` option is used to allow remote kubectl commands to the VM hosting your docker k3s image.
 
 You can use the customized Dockerfile [here](../resources/Dockerfile) to deploy your cluster with NFS possibilities.
+
+## k3s cluster installation : k3d yaml config file
+
+You can also use a `Simple` yaml file to create your cluster with k3d ([Simple yaml config file](../resources/yaml/simple-k3d-config.yaml)) using the following command and yaml config file :
+
+```bash
+k3d cluster create --config simple-k3d-config.yaml
+```
+```yaml
+kind: Simple
+apiVersion: k3d.io/v1alpha3
+name: fredcorp
+servers: 2
+agents: 0
+image: k3s:v1.22.3-k3s1
+volumes:
+- volume: /home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/
+  nodeFilters:
+    - server:*
+ports:
+  - port: 5080:80
+    nodeFilters:
+      - loadbalancer
+  - port: 5443:443
+    nodeFilters:
+      - loadbalancer
+options:
+  k3d:
+    wait: true
+    timeout: 2m0s
+  k3s:
+    extraArgs:
+    - arg: --tls-san=192.168.0.150
+      nodeFilters:
+      - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+```
+
+Documentation about this file is available here :
+- https://k3d.io/v5.0.3/usage/configfile/?h=config+file
+
+## Get the kubeconfig file
+
+You can use the following command to get the kubeconfig file directly :
+```
+k3d kubeconfig write fredcorp
+```
+
+If you have multiple cluster, you can use (this will create one file per cluster):
+```
+k3d kubeconfig merge --all
+```
+
+But it can be better to get only one kubeconfig file for all cluster :
+```
+k3d kubeconfig merge --all --kubeconfig-merge-default
+```
 
 ## install the NFS client provisioner
 
