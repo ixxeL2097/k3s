@@ -1,6 +1,12 @@
 # k3s
 General repository for k3s/k3d infrastructures
 
+## Summary
+
+## [01 - Install k3s](documentation/01-install-k3s.md)
+
+## [02 - Software installation](documentation/02-software-installation.md)
+
 ## Deploying K3S
 
 K3S use the `/var/lib/rancher/k3s/server/manifests` at startup, and apply yaml files found in it. So you can add the differents kubernetes objects you want inside this directory and it's dynamically created by k3s.

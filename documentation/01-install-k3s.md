@@ -98,6 +98,25 @@ helm upgrade -i nfs-ext-provider nfs-subdir-external-provisioner/ -n nfs --set n
 
 then install a `retain` policy storageClass :
 
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: nfs-subdir-external-provisioner
+    app.kubernetes.io/managed-by: Helm
+    chart: nfs-subdir-external-provisioner-4.0.14
+    heritage: Helm
+    release: nfs-provisioner
+  name: nfs-client-retain
+parameters:
+  archiveOnDelete: "true"
+provisioner: cluster.local/nfs-provisioner-nfs-subdir-external-provisioner
+allowVolumeExpansion: true
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+```
+
 ```bash
 kubectl apply -f nfs-client-storage-class-retain.yaml
 ```
