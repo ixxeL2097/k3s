@@ -13,6 +13,8 @@ k3d cluster create fredcorp --image ixxel/k3s:v1.21.2-k3s1-alpine314 \
 
 The `--tls-san` option is used to allow remote kubectl commands to the VM hosting your docker k3s image.
 
+You can use the customized Dockerfile [here](../resources/Dockerfile) to deploy your cluster with NFS possibilities.
+
 ## install the NFS client provisioner
 
 Add helm repo :
