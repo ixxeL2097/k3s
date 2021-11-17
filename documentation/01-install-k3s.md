@@ -140,6 +140,15 @@ local-path             rancher.io/local-path
 
 ## install the Vault server
 
+
+Add helm repo :
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo update
+helm fetch --untar hashicorp/vault
+```
+
 Install with helm :
 ```bash
 helm upgrade -i vault --namespace vault vault/ --set ui.enabled=true \
