@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-portainer
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`portainer.fredcorp.com`)
+    services:
+    - name: portainer
+      namespace: portainer
+      port: 9000
+  tls:
+    store:
+      name: default
