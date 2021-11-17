@@ -32,7 +32,7 @@ apiVersion: k3d.io/v1alpha3
 name: fredcorp
 servers: 2
 agents: 0
-image: k3s:v1.22.3-k3s1
+image: rancher/k3s:v1.22.3-k3s1
 volumes:
 - volume: /home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/
   nodeFilters:
