@@ -15,11 +15,11 @@ In this section, we will describe how to quickly install a full setup based on k
 
 ## Full install step 1 : k3d install
 
-Prerequisite:
-- k3d binary last version
-- customized rancher/k3s image
-- directory to store k3s configuration
-- HA proxy
+:pushpin: Prerequisite:
+- k3d binary last version (5.1.0 at the moment of writing)
+- Customized rancher/k3s image (if you need NFS support)
+- Dedicated directory to store k3s configuration
+- HA proxy in front of k3s cluster
 
 Create your cluster with a `Simple` yaml definition file :
 
@@ -205,7 +205,7 @@ spec:
       - ApplyOutOfSyncOnly=true
 ```
 
-If you need to, you can also apply the `Retain` `StorageClass` available [here](../resources/full-install/nfs-provisioner/storageclass-retain.yaml).
+:pushpin: If you need to, you can also apply the `Retain` `StorageClass` available [here](../resources/full-install/nfs-provisioner/storageclass-retain.yaml).
 
 Change the default `StorageClass` of the cluster:
 ```
@@ -282,7 +282,7 @@ Fork the current Github reposity and add it to the list of ArgoCD repositories. 
 
 Install will fail since the CR `Gateway` and `VirtualService` need first the `IstioOperator` to be installed. So delete both `Gateway` and `VirtualService` resources from the repo before creating the app and then add it again to the directory to synchronize it and create it after the `IstioOperator` has been deployed.
 
-You will have :
+:pushpin: You will have :
 - 1 `IstioOperator` control plane.
 - 1 `Gateway` for TLS redirection.
 - 1 `PodMonitor`
