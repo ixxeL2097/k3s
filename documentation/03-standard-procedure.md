@@ -402,6 +402,8 @@ cr:
         - name: "Istio Wasm Extension Dashboard"
 ```
 
+📌 The username/password of the grafana section must match the `values.yaml` username/password of the `kube-prometheus-stack` helm install.
+
 Set the correct URL for `Prometheus` and `Grafana`.
 
 Final rendering:
