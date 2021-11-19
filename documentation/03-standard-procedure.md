@@ -404,7 +404,7 @@ cr:
 
 📌 The username/password of the grafana section must match the `values.yaml` username/password of the `kube-prometheus-stack` helm install.
 
-Set the correct URL for `Prometheus` and `Grafana`.
+📌 Pay attention to set the correct URL for `Prometheus` and `Grafana` (prometheus.url, grafana.in_cluster_url and grafana.url).
 
 Final rendering:
 ```yaml
