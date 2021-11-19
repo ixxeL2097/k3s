@@ -215,7 +215,7 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 
 ## Full install step 5 : Istio-operator install
 
-Creae the `istio-system` namespace before if needed and create a `Secret` containing your wildcard certificate that you plan to use as TLS encryption for your whole infrastructure:
+Creae the `istio-system` namespace before if needed and create a `Secret` containing your wildcard certificate and the associated private key that you plan to use as TLS encryption for your whole infrastructure. You can generate your certificate with any PKI (like Vault) or as a self signed wildcard certificate:
 
 ```
 kubectl create secret tls fredcorp-wildcard-cert --key="certs/private.key" --cert="certs/cert.crt" -n istio-system
@@ -280,7 +280,7 @@ Fork the current Github reposity and add it to the list of ArgoCD repositories. 
 
 :warning: **WARNING !!** :warning:
 
-Install will fail since the CR `Gateway` and `VirtualService` need first the `IstioOperator` to be installed. So delete it before create the app and then add it again to the directory to synchronize it.
+Install will fail since the CR `Gateway` and `VirtualService` need first the `IstioOperator` to be installed. So delete both `Gateway` and `VirtualService` resources from the repo before creating the app and then add it again to the directory to synchronize it and create it after the `IstioOperator` has been deployed.
 
 You will have :
 - 1 `IstioOperator` control plane.
