@@ -239,7 +239,7 @@ Final rendering is as following :
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: trst
+  name: istio-operator
 spec:
   destination:
     name: ''
