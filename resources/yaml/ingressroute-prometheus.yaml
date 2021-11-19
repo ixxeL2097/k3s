@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-prometheus
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`prometheus.fredcorp.com`)
+    services:
+    - name: prom-kube-prometheus-stack-prometheus
+      port: 9090
+      namespace: monitoring
+  tls:
+    store:
+      name: default

@@ -32,7 +32,7 @@ apiVersion: k3d.io/v1alpha3
 name: fredcorp
 servers: 2
 agents: 0
-image: k3s:v1.22.3-k3s1
+image: rancher/k3s:v1.22.3-k3s1
 volumes:
 - volume: /home/fred/k3s-config/:/var/lib/rancher/k3s/server/manifests/
   nodeFilters:
@@ -139,6 +139,15 @@ local-path             rancher.io/local-path
 ```
 
 ## install the Vault server
+
+
+Add helm repo :
+
+```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo update
+helm fetch --untar hashicorp/vault
+```
 
 Install with helm :
 ```bash

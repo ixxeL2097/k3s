@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-argo-rollouts
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`argo-rollouts.fredcorp.com`)
+    services:
+    - name: argo-rollouts-dashboard
+      namespace: argocd
+      port: 3100
+  tls:
+    store:
+      name: default

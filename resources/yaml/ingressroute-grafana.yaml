@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-grafana
+  namespace: kube-system
+spec:
+  entryPoints:
+  - web
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`grafana.fredcorp.com`)
+    services:
+    - name: prom-grafana
+      port: 80
+      namespace: monitoring
+  tls:
+    store:
+      name: default
