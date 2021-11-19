@@ -4,6 +4,7 @@
 
 In this section, we will describe how to quickly install a full setup based on k3s/Prometheus/ArgoCD/Istio. The appropriate workflow is the following one :
 
+:dart: Road Map
 1. k3d     ----install---->  k3s cluster
 2. helm    ----install---->  Prom stack
 3. helm    ----install---->  ArgoCD
