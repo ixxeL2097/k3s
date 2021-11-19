@@ -282,6 +282,8 @@ Fork the current Github reposity and add it to the list of ArgoCD repositories. 
 
 Install will fail since the CR `Gateway` and `VirtualService` need first the `IstioOperator` to be installed. So delete both `Gateway` and `VirtualService` resources from the repo before creating the app and then add it again to the directory to synchronize it and create it after the `IstioOperator` has been deployed.
 
+:information_source: You can edit the `VirtualService` CR to match the FQDN entries of your IS infrastructure.
+
 :pushpin: You will have :
 - 1 `IstioOperator` control plane.
 - 1 `Gateway` for TLS redirection.
