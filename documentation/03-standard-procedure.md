@@ -110,6 +110,8 @@ backend https-backend
 Fetch `kube-prometheus-stack` helm chart and install it with customized `values.yaml`.
 
 ```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm fetch --untar prometheus-community/kube-prometheus-stack
 helm upgrade -i prom -n monitoring kube-prometheus-stack/ --create-namespace
 ```
 
