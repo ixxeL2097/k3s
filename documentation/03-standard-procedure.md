@@ -228,6 +228,12 @@ kubectl create secret tls fredcorp-wildcard-cert --key="certs/private.key" --cer
 
 Add the helm istio repository `https://stevehipwell.github.io/helm-charts/` to the list of ArgoCD repositories. Then create a new app from this repositoy.
 
+Classic install is done like this :
+```
+helm repo add stevehipwell https://stevehipwell.github.io/helm-charts/
+helm fetch --untar stevehipwell/istio-operator
+```
+
 Override following parameters :
 - `dashboards.enable` to `true`
 - `serviceMonitor.enabled` to `true`
@@ -366,6 +372,12 @@ Create the App and wait for its synchronization.
 ## Full install step 8 : Kiali operator and server install
 
 Add the helm istio repository `https://kiali.org/helm-charts` to the list of ArgoCD repositories. Then create a new app from this repositoy.
+
+Classic install is done like this :
+```
+helm repo add kiali https://kiali.org/helm-charts
+helm fetch --untar kiali/kiali-operator
+```
 
 Override following parameters :
 - `cr.create` to `true`
