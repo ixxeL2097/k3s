@@ -107,7 +107,7 @@ backend https-backend
 
 ## Full install step 2 : Prometheus stack install
 
-Fetch `kube-prometheus-stack` helm chart and install it with customized `values.yaml`.
+Fetch `kube-prometheus-stack` helm chart and install it with customized `values.yaml` that you can find [here](../resources/full-install/prom-stack/prom-values.yaml).
 
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
