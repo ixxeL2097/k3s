@@ -170,7 +170,7 @@ Override following parameters :
 - `nfs.server` to your NFS server IP address
 - `nfs.path` to your NFS server shared path
 - `storageClass.accessModes` to `ReadWriteMany`
-- `storageClass.name` to `nfs-client-retain`
+- `storageClass.name` to `nfs-client-delete`
 
 Final rendering :
 ```yaml
@@ -198,6 +198,8 @@ spec:
           value: /NFS/data-k3s
         - name: storageClass.accessModes
           value: ReadWriteMany
+        - name: storageClass.name
+          value: nfs-client-delete
   project: default
   syncPolicy:
     automated:
