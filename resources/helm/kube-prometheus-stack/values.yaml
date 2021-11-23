@@ -663,7 +663,7 @@ grafana:
   ##
   defaultDashboardsTimezone: Europe/Paris
 
-  adminPassword: admin
+  adminPassword: coucou
 
   ingress:
     ## If true, Grafana Ingress will be created
@@ -729,6 +729,15 @@ grafana:
         allowUiUpdates: true
         options:
           path: /tmp/dashboards/apps
+      - name: 'Infra'
+        orgId: 1
+        folder: 'Infra'
+        type: file
+        disableDeletion: true
+        editable: true
+        allowUiUpdates: true
+        options:
+          path: /tmp/dashboards/infra
 
   sidecar:
     image:
@@ -917,7 +926,7 @@ kubeApiServer:
 ## Component scraping the kubelet and kubelet-hosted cAdvisor
 ##
 kubelet:
-  enabled: true
+  enabled: false
   namespace: kube-system
 
   serviceMonitor:
@@ -1051,7 +1060,7 @@ kubelet:
 ## Component scraping the kube controller manager
 ##
 kubeControllerManager:
-  enabled: true
+  enabled: false
 
   ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1070,7 +1079,7 @@ kubeControllerManager:
     #   component: kube-controller-manager
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1209,7 +1218,7 @@ kubeDns:
 ## Component scraping etcd
 ##
 kubeEtcd:
-  enabled: true
+  enabled: false
 
   ## If your etcd is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1239,7 +1248,7 @@ kubeEtcd:
   ##   keyFile: /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
   ##
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1276,7 +1285,7 @@ kubeEtcd:
 ## Component scraping kube scheduler
 ##
 kubeScheduler:
-  enabled: true
+  enabled: false
 
   ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1295,7 +1304,7 @@ kubeScheduler:
     #   component: kube-scheduler
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1336,7 +1345,7 @@ kubeScheduler:
 ## Component scraping kube proxy
 ##
 kubeProxy:
-  enabled: true
+  enabled: false
 
   ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
   ##
@@ -1353,7 +1362,7 @@ kubeProxy:
     #   k8s-app: kube-proxy
 
   serviceMonitor:
-    enabled: true
+    enabled: false
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
     interval: ""
@@ -1440,7 +1449,7 @@ kube-state-metrics:
 ## Deploy node exporter as a daemonset to all nodes
 ##
 nodeExporter:
-  enabled: true
+  enabled: false
 
   ## Use the value configured in prometheus-node-exporter.podLabels
   ##
